@@ -74,3 +74,52 @@ db.createCollection('<nombre-coleccion>')
 db.createCollection('productos') // nombres de las colecciones siempre en plural
 db.createCollection('clientes')
 ```
+
+## Método insertOne() -> Crear un documento 
+
+```js
+db.<nombre-coleccion>.insertOne({
+    field1: value1,
+    field2: value2
+})
+```
+
+
+```js
+db.productos.insertOne({
+    nombre: 'PC',
+    categoria: 'Informatica',
+    precio: 223.40
+})
+```
+
+## Método insertMany() -> Crear un o más documentos
+
+```js
+db.<nombre-colección>.insertMany([
+    {nombre: 'Celular'}, { nombre: 'Tablet'}
+])
+```
+
+```js
+db.productos.insertMany([
+    {
+        nombre: 'Celular',
+        categoria: 'Comunicación',
+        precio: 333.45
+    }, 
+    { 
+        nombre: 'Tablet',
+        categoria: 'Entretenimiento',
+        precio: 232.34
+    }
+])
+```
+
+## Método find(): Me sirve para listar o filtrar elementos dentro de una colección
+
+```js
+db.<nombre-colección>.find() // Todos los elementos
+db.<nombre-colección>.find({}) // Todos los elementos
+db.productos.find({ nombre: 'PC' }) // Los documentos que tenga 'PC' en su field nombre
+```
