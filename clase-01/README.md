@@ -123,3 +123,17 @@ db.<nombre-colección>.find() // Todos los elementos
 db.<nombre-colección>.find({}) // Todos los elementos
 db.productos.find({ nombre: 'PC' }) // Los documentos que tenga 'PC' en su field nombre
 ```
+
+## Contar los documentos totales de una colección y los documentos obtenidos por alguna operación
+
+```js
+db.<nombre-colección>.countDocuments() // Me cuenta la cantidad total de documentos
+db.productos.countDocuments() // Me cuenta la cantidad total de documentos
+```
+
+```js
+// Me muestra la cantidad de documentos que devuelve la consulta
+db.<nombre-colección>.find({}).count()
+db.<nombre-colección>.find({}).size()
+db.productos.find({ categoria: 'Informatica' }).count() // 2 documentos
+```  
