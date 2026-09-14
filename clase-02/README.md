@@ -341,6 +341,35 @@ db.products.insertMany([
 ])
 ```
 
+## Busquedas dentro de la colección products
+
+> Buscar productos cuyo nombre contenga 'Lenovo'
+
+```js
+db.products.find({ name: 'Lenovo IdeaPad 5' }) // No funciona para buscar que contenga la palabra 'Lenovo'
+// Operador $regex
+db.products.find(
+    {
+        name: {
+            $regex: 'Lenovo'
+        }
+    }
+)
+```
+
+> Buscar sin importar mayúsculas/minúsculas
+
+
+```js
+db.products.find(
+    {
+        name: {
+            $regex: 'lenovo',
+            $options: 'i' /* i ->  case insensitive */
+        }
+    }
+)
+```
 
 
 
