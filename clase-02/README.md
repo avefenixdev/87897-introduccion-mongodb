@@ -371,6 +371,182 @@ db.products.find(
 )
 ```
 
+> Buscar Nombres que comiencen con "Sam"
+
+```js
+db.products.find(
+    {
+        name: {
+            $regex: '^sam', /* ^ -> Que comience con... */
+            $options: 'i'
+        }
+    }
+)
+``` 
+
+# Trabajando con expresiones regulares
+
+<https://regexr.com/>
+<https://regex101.com/>
+<https://www.mongodb.com/es/docs/manual/reference/operator/query/regex/>
 
 
+> Consultar elementos de una lista
 
+```js
+db.products.find({
+    tags: 'gaming'
+})
+// -----
+db.products.find({
+    tags: 'trabajo'
+})
+```
+
+> Consultar productos que tengan más de un tag (Operador $all)
+
+```js
+db.products.find({
+    tags: {
+        $all: ['notebook', 'trabajo']
+    }
+})
+``` 
+
+> Buscar productos que contengan al menos uno de varios tags (Operador $in)
+
+```js
+db.products.find({
+    tags: {
+        $in: ['gaming', 'trabajo']
+    }
+})
+```
+
+> Buscar por procesador
+
+```js
+db.products.find({
+    'specifications.processor': 'Intel Core i5'
+})
+
+db.products.find({
+    'specifications.processor': {
+        $regex: 'intel',
+        $options: 'i'
+    }
+})
+``` 
+
+> Buscar tamaño de pantalla del documento monitor
+
+```js
+db.products.find({
+    'specifications.screen.size': 32
+})
+
+// Proyectando...
+db.products.find(
+    {
+        'specifications.screen.size': 32
+    },
+    {
+        name: 1,
+        _id: 0
+    }
+)
+```
+
+> Buscar dentro de listas algun dato que este dentro del documento anidado.
+
+```js
+db.products.find({
+    'variants.name': 'Azul'
+})
+
+
+db.products.find({
+    'variants.name': { 
+        $regex: 'azul',
+        $options: 'i'
+    }
+})
+```
+
+## Practica (Acceso a a documentos anidados)
+
+1. Buscar productos con 16 GB de RAM
+2. Buscar productos con resolución de "2560x1440"
+
+## Resoluciones
+
+
+```js
+// Arnold
+db.products.find({'specifications.ram': {$regex: '16'}})
+db.products.find({'specifications.screen.resolution': '2560x1440'})
+``` 
+
+```js
+// Maximiliano
+db.products.find({
+    'specifications.ram': {
+        $regex: '16 gb',
+        $options: 'i'
+    }
+})
+db.products.find({
+    'specifications.resolution': "2560x1440"
+})
+``` 
+
+```js
+// Mauro
+db.products.find( { 'specifications.ram': "16 GB" })
+db.products.find( { 'specifications.screen.resolution' : "2560x1440" })
+```  
+
+```js
+// Judith
+db.products.find(
+    {
+    'specifications.ram': '16 GB'
+    },
+    { name: 1, _id: 0 }
+)
+db.products.find({
+    'specifications.screen.resolution': '2560x1440'
+    },
+    { name: 1, _id: 0 }
+)
+``` 
+
+## Documentos relacionados
+
+```js
+db.products.find({categoryId: ObjectId('6aa7e80d9b295e7bf547fe2f')}, { name: 1, categoryId: 1})
+/*
+[
+  {
+    _id: ObjectId('6aa7f81aadaa3ca3d3abc122'),
+    name: 'Samsung Odyssey G5',
+    categoryId: ObjectId('6aa7e80d9b295e7bf547fe2f')
+  }
+] 
+*/
+```
+
+## Trabajando con el operador $lookup
+
+```js
+db.products.aggregate([
+    {
+        $lookup: {
+            from: 'categories', /* Nombre colección */
+            localField: 'categoryId', /* field local a la colección actual (products) */
+            foreignField: '_id',
+            as: 'category'
+        }
+    }
+])
+```
