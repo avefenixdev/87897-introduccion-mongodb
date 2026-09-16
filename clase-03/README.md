@@ -115,7 +115,9 @@ db.personas.insertOne({
 })
 ```
 
-## Operadores de comparación
+# Operadores de comparación
+
+<https://www.mongodb.com/docs/manual/reference/mql/query-predicates/comparison/>
 
 ## Operador -> $eq: (Igual a...)
 
@@ -179,9 +181,93 @@ db.personas.find({
 ```
 
 ## Operador -> $in: (Incluido en...)
+
+```js
+db.personas.find({
+    edad: {
+        $in: [22, 44, 34, 43, 18, 125]
+    }
+})
+```
+
+
 ## Operador -> $nin: (No incluido en...)
 
+```js
+db.personas.find({
+    edad: {
+        $nin: [22, 44, 34, 43, 18, 125]
+    }
+})
+```
+
+# Operadores lógicos 
+
+<https://www.mongodb.com/es/docs/manual/reference/mql/query-predicates/logical/>
+
+## Operador $and (Operador lógico 'y' -> 'and')
+
+```js
+db.personas.find({
+    $and: [
+        {
+            edad: {
+                $gte: 18
+            }
+        },
+        {
+            edad: {
+                $lte: 40
+            }
+        }
+    ]
+})
+```
+
+```js
+db.personas.find({
+    edad: {
+        $gte: 18,
+        $lte: 40
+    }
+})
+```
 
 
+```js
+db.personas.find({
+    $and: [
+        {
+            nombre: 'Maximo'
+        },
+        {
+            edad: 43
+        }
+    ]
+})
+```
+
+## Operador $or (Operador lógico 'o' -> 'or')
+
+```js
+db.personas.find({
+    $or: [
+        { edad: 22 },
+        { nombre: 'Messi' }
+    ]
+})
+```
+
+# Métodos de MongoDB
+
+## size(), count(): Nos permitia saber del resultado cuandos documentos teníamos
+
+```js
+db.personas.find({ 
+    edad: { 
+        $gte: 40
+    }
+}).count()
+``` 
 
 
