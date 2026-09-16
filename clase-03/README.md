@@ -384,3 +384,41 @@ db.personas.deleteMany(
 })
 ```  
 
+# Operadores para trabajar con listas (arrays)
+
+## Operador $push: Me permite agregar elementos al final de una lista
+
+```js
+db.personas.find(
+    {
+        _id: ObjectId('6aaa8d7252f4bfc2d0d47b6c')
+    }
+)
+
+// --- Agregamos el rosa y el turquesa a Lorena
+db.personas.updateOne(
+    {
+        _id: ObjectId('6aaa8d7252f4bfc2d0d47b6c')
+    },
+    {
+        $push: {
+            coloresFavoritos: {
+                $each: ['rosa', 'turquesa']
+            }
+        }
+    }
+)
+
+// --- Intentamos sacar ['rosa', 'turquesa'] de la lista
+// https://www.mongodb.com/es/docs/manual/reference/operator/update/pull/
+db.personas.updateOne(
+    {
+        _id: ObjectId('6aaa8d7252f4bfc2d0d47b6c')
+    },
+    {
+        $pull: {
+          coloresFavoritos: ['rosa', 'turquesa']
+        }
+    }
+)
+``` 
