@@ -270,4 +270,39 @@ db.personas.find({
 }).count()
 ``` 
 
+## limit(): Me permite limitar la cantidad de documentos que me devuelve la consulta
+
+```js
+db.personas.find().limit(3) /* Me muestra los primeros 3 */
+db.personas.find().limit(5)  /* Me muestra los primeros 5 */
+```
+
+## skip(): Me permite descartar documentos de la consulta
+<https://www.geeksforgeeks.org/mongodb/mongodb-skip-method/>
+
+```js
+db.personas.find().skip(3) /* Descarta los primeros 3 */
+db.personas.find().skip(10) /* Descarta los primeros 10 */
+```
+
+## sort(): Me permite ordenar la información en forma ascendente y descendente
+
+```js
+db.personas.find() /* Muestra por orden de creación */
+db.personas.find({}, {_id: 0}).sort( { edad: 1 }) /* 1 -> ascendente (menor a mayor) */
+db.personas.find({}, {_id: 0}).sort( { edad: -1 }) /* -1 -> descendente (mayor a menor) */
+db.personas.find({}, {_id: 0}).sort( { nombre: 1 }) /* 1 -> ascendente (a - z) */
+db.personas.find({}, {_id: 0}).sort( { nombre: -1 }) /* -1 -> descendente (z - a) */
+```
+
+## Caso práctico, caso real (PAGINADO)
+
+```js
+db.personas.find().skip(0).limit(3) /* Primeros 3 documentos */
+db.personas.find().skip(3).limit(3) /* Segundos 3 documentos */
+db.personas.find().skip(6).limit(3)
+db.personas.find().skip(9).limit(3)
+```  
+
+
 
