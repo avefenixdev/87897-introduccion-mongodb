@@ -304,5 +304,83 @@ db.personas.find().skip(6).limit(3)
 db.personas.find().skip(9).limit(3)
 ```  
 
+## Método updateOne(): Nos permite actualizar uno documento
 
+Cuando tengo que actualizar documentos voy a tener por lo menos 2 grandes operadores
+
+* Operador $set: Agregar o modificar fields y valores
+* Operador $unset: Me va a permitir borrar fields y valores
+
+```js
+db.personas.find({})
+db.personas.updateOne(
+    {},
+    {
+        $set: {
+            coloresFavoritos: ['rojo', 'negro', 'azul']
+        }
+    }
+)
+```
+
+## Método updateMany(): Nos permite actualizar uno o varios documentos
+
+```js
+db.personas.find({})
+db.personas.updateMany(
+    {},
+    {
+        $set: {
+            coloresFavoritos: ['verde', 'violeta', 'negro', 'azul']
+        }
+    }
+)
+```
+
+> Quitamos de todos los documentos el field coloresFavoritos
+
+```js
+db.personas.updateMany(
+    {},
+    {
+        $unset: {
+            coloresFavoritos: 0 /* El valor puede ser cualquier cosa. */
+        }
+    }
+)
+```
+
+
+## Método deleteOne(): Nos permite borrar uno documento
+
+```js
+db.personas.find(
+    { 
+        edad: { 
+            $gte: 78 
+        }
+})
+
+db.personas.deleteOne(
+    { edad: { 
+        $gte: 78 
+    }
+})
+```  
+
+## Método deleteMany(): Nos permite borrar uno o varios documentos
+
+```js
+db.personas.find(
+    { edad: { 
+        $gte: 78 
+    }
+})
+
+db.personas.deleteMany(
+    { edad: { 
+        $gte: 78 
+    }
+})
+```  
 
