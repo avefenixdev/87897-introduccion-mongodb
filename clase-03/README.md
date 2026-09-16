@@ -422,3 +422,9 @@ db.personas.updateOne(
     }
 )
 ``` 
+
+# Desafío modificación de colores favoritos
+
+1. Por ObjectID (Sandra) agregar amarillo y blanco. Y sacar negro verde y azul
+2. Los mayores a 54, quitar el negro.
+3. Geraldine quitar negro, verde, violeta y agregar el rojo, naranja
