@@ -426,5 +426,158 @@ db.personas.updateOne(
 # Desafío modificación de colores favoritos
 
 1. Por ObjectID (Sandra) agregar amarillo y blanco. Y sacar negro verde y azul
+
+```js
+// Judith
+db.personas.find({
+    nombre: 'Sandra'
+})
+db.personas.updateOne(
+    {
+        _id: ObjectId('6aaa9c0ea907ad6badd6d3a5')
+    },
+    {
+        $push: {
+            coloresFavoritos: {
+                $each: ['amarillo', 'blanco']
+            }
+        }
+    }
+)
+db.personas.updateOne(
+    {
+        _id: ObjectId('6aaa9c0ea907ad6badd6d3a5')
+    },
+    {
+        $pull: {
+            coloresFavoritos: {
+                $in: ['negro', 'verde', 'azul']
+            }
+        }
+    }
+)
+db.personas.find({
+    _id: ObjectId('6aaa9c0ea907ad6badd6d3a5')
+})
+
+// Maxi
+db.personas.updateOne(
+    {
+        _id: ObjectId('6aaa8dbc46a1962cbfcfb2c2')
+    },
+    {
+        $push: {
+            coloresFavoritos: {
+                $each: ['amarillo', 'blanco']
+            }
+        }
+    }
+)
+db.personas.updateOne(
+    {
+        _id: ObjectId('6aaa8dbc46a1962cbfcfb2c2')
+    },
+    {
+        $pull: {
+            coloresFavoritos: {
+                $in: ['negro', 'verde', 'azul']
+            }
+        }
+    }
+)
+
+```
+
 2. Los mayores a 54, quitar el negro.
+
+```js
+// Judith
+db.personas.updateMany(
+    {
+        edad: {
+            $gt: 54
+        }
+    },
+    {
+        $pull: {
+            coloresFavoritos: 'negro'
+        }
+    }
+)
+db.personas.find({
+    edad: {
+        $gt: 54
+    }
+})
+
+// Maxi
+db.personas.updateMany(
+  {
+    edad: {
+      $gt: 54
+    }
+  },
+  {
+    $pull: {
+      coloresFavoritos: 'negro'
+    }
+  }
+)
+```
+
 3. Geraldine quitar negro, verde, violeta y agregar el rojo, naranja
+
+```js
+// Judith
+db.personas.find({
+    nombre: 'Geraldine'
+})
+db.personas.updateOne(
+    {
+        nombre: 'Geraldine'
+    },
+    {
+        $pull: {
+            coloresFavoritos: {
+                $in: ['negro', 'verde', 'violeta']
+            }
+        }
+    }
+)
+db.personas.updateOne(
+    {
+       nombre: 'Geraldine'
+    },
+    {
+        $push: {
+            coloresFavoritos: {
+                $each: ['rojo', 'naranja']
+            }
+        }
+    }
+)
+db.personas.find({
+    nombre: 'Geraldine'
+})
+
+// Maxi
+db.personas.updateOne(
+    {
+        _id: ObjectId('6aaa8dbc46a1962cbfcfb2c0')
+    },
+    {
+        $pull: {
+            coloresFavoritos: {
+                $in: ['negro', 'verde', 'violeta']
+            }
+        }
+    },
+    {
+        $push: {
+            coloresFavoritos: {
+                $each: ['rojo', 'naranja']
+            }
+        }
+    }
+)
+```
