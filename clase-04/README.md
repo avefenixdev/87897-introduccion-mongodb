@@ -138,6 +138,17 @@ db.facturas.aggregate(
 )
 ```
 
+# Practicas con el framework Aggregate
+
+> 1. Facturas superiores a $500
+> 2. Contar cuantas facturas existen. "cantidadFacturas"
+> 3. Obtener la factura más cara
+> 4. Cantidad de facturas por cliente
+Maximiliano -> 2
+Evelyn -> 1
+Tomas -> 2
+> 5. Promedio gastado por cliente
+
 
 
 
