@@ -95,3 +95,90 @@ db.alumnos.insertMany([
   { _id: 20, nombre: "Elena", edad: 24,  tags: ["html", "css", "design"],    notas: [{ tipo: "tarea", nota: 6 }] }
 ])
 ```
+
+## Operador $all (Devuelve todos los alumnos que tengan 'vue' y 'js')
+
+```js
+db.alumnos.find(
+    {
+        tags: {
+            $all: ['vue', 'js']
+        }
+    }
+)
+```  
+
+```js
+db.alumnos.find(
+    {
+        tags: {
+            $all: ['node', 'js']
+        }
+    }
+)
+```  
+
+## Operador $elemMatch ( Encuentra alumnos que tengan al menos una nota de examen mayor a 8 )
+
+```js
+db.alumnos.find(
+    {
+        notas: {
+            $elemMatch: {
+                tipo: 'examen',
+                nota: {
+                    $gt: 8
+                }
+            }
+        }
+    }
+)
+``` 
+
+## Operador $size (Devuelve alumnos con exactamente 2 tags)
+
+```js
+db.alumnos.find(
+    {
+        tags: {
+            $size: 2
+        }
+    }
+)
+```
+
+## field.N:  Devuelve el alumno que tenga en la posición de la lista el elemento buscado
+
+```js
+db.alumnos.find(
+    {
+        'tags.0': 'node'
+    }
+)
+```
+
+```js
+db.alumnos.find(
+    {
+        'tags.1': 'node'
+    }
+)
+```
+
+## Operador $exists: Devuelve si existe el field en el documento
+
+```js
+db.alumnos.find(
+    {
+        tags: { $exists: true }
+    }
+) /* Muestra todos los documentos que tengan el field 'tags' */
+``` 
+
+```js
+db.alumnos.find(
+    {
+        activo: { $exists: false }
+    }
+) /* Muestra todos los documentos que no tenga el field 'activo' */
+``` 
