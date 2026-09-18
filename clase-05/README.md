@@ -182,3 +182,49 @@ db.alumnos.find(
     }
 ) /* Muestra todos los documentos que no tenga el field 'activo' */
 ``` 
+
+# Tareas de mantenimiento y trabajo con MONGO
+
+## Mongo Dump
+Nos permite hacer una imagen, backup de nuestras bases de datos y colecciones
+
+<https://www.mongodb.com/docs/database-tools/mongodump/>
+
+```sh
+mongodump --version
+``` 
+
+```sh
+# Trabajo local
+mongodump --uri="mongodb://mongodb0.example.com:27017" [additional options]
+mongodump --db=db_pescar --collection=products
+
+# Trabajo remoto
+mongodump "mongodb+srv://ave-fenix.kfnq3ci.mongodb.net/" --username avefenixdev_db_user --db=sample_mflix
+```  
+## Mongo Restore
+Nos permite recuperar dumps (backups) de la base de datos o colecciones
+
+<https://www.mongodb.com/es/docs/database-tools/mongorestore/>
+
+```sh
+mongorestore --version
+``` 
+
+```sh
+# Trabajo local
+mongorestore <options> <connection-string> <directory or file to restore>
+mongorestore --nsInclude=db_pescar.products ./dump
+mongorestore --nsInclude=db_pescar.* ./dump
+mongorestore --nsInclude=sample_mflix.* ./dump
+
+# Trabajo remoto
+mongorestore "mongodb+srv://ave-fenix.kfnq3ci.mongodb.net/" --username avefenixdev_db_user --nsInclude=db_pescar.products ./dump
+```  
+
+## Mongo Import
+Importar archivos json y csv a MongoDB conviertiendo a documentos.
+
+
+## Mongo Export
+Exportar documentos MongoDB a archivos json y csv.
