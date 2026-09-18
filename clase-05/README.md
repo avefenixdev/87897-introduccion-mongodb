@@ -225,6 +225,28 @@ mongorestore "mongodb+srv://ave-fenix.kfnq3ci.mongodb.net/" --username avefenixd
 ## Mongo Import
 Importar archivos json y csv a MongoDB conviertiendo a documentos.
 
+<https://www.mongodb.com/es/docs/database-tools/mongoimport/>
+
+```sh
+mongoimport --version
+``` 
+
+```sh
+mongoimport <options> <connection-string> <file>
+mongoimport --db=db_pescar --collection=inscriptos --jsonArray --file=inscriptos.json
+mongoimport --db=db_pescar --collection=autos_usados --jsonArray --file=autos_usados.json
+``` 
+
 
 ## Mongo Export
 Exportar documentos MongoDB a archivos json y csv.
+
+<https://www.mongodb.com/es/docs/database-tools/mongoexport/>
+
+```sh
+mongoexport --version
+```
+
+```sh
+mongoexport --db=db_pescar --collection=products --type=json --out=products.json
+``` 
