@@ -44,7 +44,49 @@ print('------------------------ forEach()')
 cursor = db.archivos.find(
     {
         archivo_id: { $gte: 60 }
+    },
+    {
+        _id: 0,
+        archivo_id: 1,
+        nombre: 1
     }
 )
+.skip(5)
+.limit(20)
+.sort({ archivo_id: -1}) /* -1 -> desc | 1 -> asc */
+.noCursorTimeout()
 
-console.log(cursor)
+//console.log(cursor)
+
+// ! ---------------------------
+// ! Métodos hasNext() y next()
+// ! ---------------------------
+
+print('---------------------- hasNext() y next()')
+
+/* while ( cursor.hasNext() ) {
+    print('--')
+    print(cursor.next())
+} */
+
+// ! -----------------
+// ! Métodos toArray()
+// ! -----------------
+
+print('--------------------- toArray()')
+
+print('cursor (objeto) -----> array (métodos los arrays)')
+
+//print(cursor)
+
+let documentosArray = cursor.toArray()
+
+print('Acceso directo a un documento en particular')
+
+let document = documentosArray[0]
+print(document)
+document = documentosArray[5]
+print(document)
+document = documentosArray[documentosArray.length-1]
+print(document)
+print('Cantidad de documentos dentro del array:', documentosArray.length)

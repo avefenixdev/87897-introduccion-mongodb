@@ -62,4 +62,8 @@ load('cursor01.js')
 ```js
 db.<nombre-colección>.drop()
 db.archivos.drop()
-``` 
+```
+
+## noCursorTimeout()
+
+<https://www.mongodb.com/docs/manual/reference/method/cursor.noCursorTimeout/>
