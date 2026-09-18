@@ -67,3 +67,31 @@ db.archivos.drop()
 ## noCursorTimeout()
 
 <https://www.mongodb.com/docs/manual/reference/method/cursor.noCursorTimeout/>
+
+
+# Trabajando con las listas (Arrays)
+
+```js
+db.alumnos.insertMany([
+  { _id: 1, nombre: "Juan",   edad: 25,  tags: ["js", "node", "api"],        notas: [{ tipo: "examen", nota: 7 }, { tipo: "tarea", nota: 6 }] },
+  { _id: 2, nombre: "Ana",    edad: 28,  tags: ["react", "frontend"],        notas: [{ tipo: "examen", nota: 9 }] },
+  { _id: 3, nombre: "Pedro",  edad: 30,  tags: ["node", "mongo"],            notas: [{ tipo: "tarea", nota: 5 }] },
+  { _id: 4, nombre: "Lucía",  edad: 22,  tags: ["css", "html"],              notas: [{ tipo: "examen", nota: 8 }, { tipo: "tarea", nota: 9 }] },
+  { _id: 5, nombre: "Carlos", edad: 27,  tags: ["node", "js", "express"],    notas: [{ tipo: "examen", nota: 4 }] },
+  { _id: 6, nombre: "María",  edad: 29,  tags: ["vue", "frontend"],          notas: [{ tipo: "examen", nota: 10 }] },
+  { _id: 7, nombre: "Laura",  edad: 24,  tags: ["node", "react"],            notas: [{ tipo: "tarea", nota: 6 }] },
+  { _id: 8, nombre: "Diego",  edad: 26,  tags: ["mongo", "api"],             notas: [{ tipo: "examen", nota: 7 }, { tipo: "tarea", nota: 8 }] },
+  { _id: 9, nombre: "Marta",  edad: 31,  tags: ["css", "design"],            notas: [{ tipo: "tarea", nota: 10 }] },
+  { _id: 10, nombre: "Javier",edad: 35,  tags: ["express", "api"],           notas: [{ tipo: "examen", nota: 9 }] },
+  { _id: 11, nombre: "Rosa",  edad: 21,  tags: ["node", "js"],               notas: [{ tipo: "examen", nota: 5 }] },
+  { _id: 12, nombre: "Nico",  edad: 23,  tags: ["vue", "html"],              notas: [{ tipo: "tarea", nota: 7 }] },
+  { _id: 13, nombre: "Pablo", edad: 32,  tags: ["react", "api"],             notas: [{ tipo: "examen", nota: 6 }] },
+  { _id: 14, nombre: "Cecilia",edad: 26, tags: ["js", "frontend"],           notas: [{ tipo: "tarea", nota: 9 }] },
+  { _id: 15, nombre: "Tomás", edad: 25,  tags: ["express", "backend"],       notas: [{ tipo: "examen", nota: 8 }] },
+  { _id: 16, nombre: "Verónica",edad: 27,tags: ["css", "design", "html"],    notas: [{ tipo: "tarea", nota: 7 }] },
+  { _id: 17, nombre: "Gabriel",edad: 22, tags: ["node", "backend"],          notas: [{ tipo: "examen", nota: 10 }] },
+  { _id: 18, nombre: "Sofía", edad: 28,  tags: ["vue", "js"],                notas: [{ tipo: "tarea", nota: 5 }] },
+  { _id: 19, nombre: "Ricardo",edad: 33, tags: ["react", "api", "mongo"],    notas: [{ tipo: "examen", nota: 8 }] },
+  { _id: 20, nombre: "Elena", edad: 24,  tags: ["html", "css", "design"],    notas: [{ tipo: "tarea", nota: 6 }] }
+])
+```
