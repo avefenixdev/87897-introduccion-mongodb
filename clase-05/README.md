@@ -56,3 +56,10 @@ Si estoy en el directorio donde están los scripts, me va a resultar mucho más 
 load('<ruta>/<al>/<script>/cursor01.js')
 load('cursor01.js')
 ```
+
+## Para eliminar una colección
+
+```js
+db.<nombre-colección>.drop()
+db.archivos.drop()
+``` 
